@@ -23,7 +23,7 @@ public class PaymentResource {
 
 
     @GetMapping("/{workerId}/days/{days}")
-    public ResponseEntity<PaymentDTO> hello(@PathVariable Long workerId, @PathVariable Integer days) {
+    public ResponseEntity<PaymentDTO> hello(@PathVariable("workerId") Long workerId, @PathVariable("days") Integer days) {
         return ResponseEntity.ok(mapper.toDto(service.getPayment(workerId, days)));
     }
 }
