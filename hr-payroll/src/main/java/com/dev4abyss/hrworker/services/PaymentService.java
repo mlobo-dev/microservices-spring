@@ -2,28 +2,19 @@ package com.dev4abyss.hrworker.services;
 
 import com.dev4abyss.hrworker.entities.Payment;
 import com.dev4abyss.hrworker.entities.Worker;
+import com.dev4abyss.hrworker.feignClients.WorkerFeignClient;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
 public class PaymentService {
 
-    private final RestTemplate restTemplate;
+    private final WorkerFeignClient workerFeignClient;
 
-    @Value("${api.worker.url}")
-    private String workerHost;
+    public Payment getPayment(Long workerId, int days) {
 
-    public Payment getPayment(long workerId, int days) {
-        Map<String, String> uriVariables = new HashMap<>();
-        uriVariables.put("id", String.valueOf(workerId));
-
-        Worker worker = restTemplate.getForObject(workerHost + "/workers/{id}", Worker.class, uriVariables);
+        Worker worker = workerFeignClient.findById(workerId).getBody();
 
         return new Payment(worker.getName(), worker.getDailyIncome(), days);
 
