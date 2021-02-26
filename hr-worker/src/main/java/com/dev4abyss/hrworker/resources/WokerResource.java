@@ -38,6 +38,7 @@ public class WokerResource {
     @ApiOperation("List worker by id")
     @GetMapping("/{id}")
     public ResponseEntity<WorkerDTO> findById(@PathVariable Long id) {
+
         log.info("PORT" + env.getProperty("local.server.port"));
         return ResponseEntity.ok(mapper.toDto(service.findById(id)));
     }
