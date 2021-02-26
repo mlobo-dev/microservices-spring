@@ -30,7 +30,10 @@
             <optional>true</optional>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
         <!--TOOLS-->
         <dependency>
             <groupId>org.mapstruct</groupId>
