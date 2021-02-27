@@ -14,6 +14,14 @@ public class UserService {
 
 
     public User findByEmail(String email) {
-        return repository.findByEmail(email).orElseThrow(() -> new ObjectNotFoundException("User not found by email: " + email));
+        return repository.findByEmail(email).orElseThrow(
+                () -> new ObjectNotFoundException("User not found by email: " + email)
+        );
+    }
+
+    public User findById(Long id) {
+        return repository.findById(id).orElseThrow(
+                () -> new ObjectNotFoundException("User not found by id: " + id)
+        );
     }
 }

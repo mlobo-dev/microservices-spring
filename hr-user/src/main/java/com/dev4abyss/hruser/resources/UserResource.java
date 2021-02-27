@@ -5,10 +5,7 @@ import com.dev4abyss.hruser.services.UserService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RequestMapping("/users")
@@ -19,8 +16,13 @@ public class UserResource {
 
     private final UserService service;
 
-    @GetMapping
+    @GetMapping("/email")
     public ResponseEntity<User> findByEmail(@RequestParam("email") String email) {
         return ResponseEntity.ok(service.findByEmail(email));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.findById(id));
     }
 }
