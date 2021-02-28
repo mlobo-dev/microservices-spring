@@ -29,12 +29,12 @@ public class PaymentResource {
     @HystrixCommand(fallbackMethod = "getPaymentAlternative")
     @GetMapping("/{workerId}/days/{days}")
     public ResponseEntity<PaymentDTO> getPayment(@PathVariable("workerId") Long workerId, @PathVariable("days") Integer days) {
-        log.info("hello");
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        log.info("hello");
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         return ResponseEntity.ok(mapper.toDto(service.getPayment(workerId, days)));
     }
 
