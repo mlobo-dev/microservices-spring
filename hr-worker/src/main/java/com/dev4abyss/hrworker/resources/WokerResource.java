@@ -32,21 +32,11 @@ public class WokerResource {
     private final Environment env;
 
 
-    @Value("${test.config}")
-    private String config;
-
 
     @ApiOperation("List all workers")
     @GetMapping
     public ResponseEntity<List<WorkerDTO>> listAll() {
         return ResponseEntity.ok(mapper.toDto(service.listAll()));
-    }
-
-    @ApiOperation("List all workers")
-    @GetMapping("/configs")
-    public ResponseEntity<String> configs() {
-        log.info(config);
-        return ResponseEntity.ok(config);
     }
 
     @ApiOperation("List worker by id")
